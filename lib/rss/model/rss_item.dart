@@ -36,17 +36,28 @@ class RssItem {
     String endRegrex = r.endDecriptionRegrex;
     
     int startIndex = rawDecription.indexOf(startRegrex);
+    String result = "";
     if (startIndex != -1) {
       int start = startIndex + startRegrex.length;
       if(endRegrex.isNotEmpty){
         int end = rawDecription.indexOf(endRegrex, start);
         if (end != -1) {
-          return rawDecription.substring(start, end);
+          result = rawDecription.substring(start, end);
         }
+      } else {
+        result = rawDecription.substring(start);
       }
-      return rawDecription.substring(start);
+    } else {
+      result = rawDecription;
     }
-    return rawDecription; // Return original if pattern not found
+
+    // Clean up common HTML tags that often remain
+    return result
+        .replaceAll('</br>', '')
+        .replaceAll('<br>', '')
+        .replaceAll('<br/>', '')
+        .replaceAll('&nbsp;', ' ')
+        .trim();
   }
 
   String? _getImageUrl(String rawDecription, {required RssResource r}){

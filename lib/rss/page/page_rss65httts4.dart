@@ -1,7 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trananhtin_flutter_app/rss/controller/rss_controller_simple.dart';
 import 'package:trananhtin_flutter_app/rss/model/rss_item.dart';
+import 'package:trananhtin_flutter_app/rss/page/page_view_rss65httts4.dart';
+
+import '../model/rss_resource.dart';
 
 class PageRss65httts4 extends StatelessWidget {
   PageRss65httts4({super.key});
@@ -11,8 +16,61 @@ class PageRss65httts4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(controller.currentResourceName),
+        title: GetBuilder<SimpleControllerRss>(
+          id: "resourceName",
+          builder: (controller) => Text(controller.currentResourceName),
+        ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: [
+          GetBuilder<SimpleControllerRss>(
+              id: "header",
+              init: controller,
+              builder: (controller){
+                List<String> headers = controller.headerResources;
+                return DropdownButton<String>(
+                    value: controller.resourceHeader,
+                    items: controller.headerResources.map(
+                        (e) => DropdownMenuItem(
+                          child: Text(e),
+                          value: e,
+                        )
+                    ).toList(),
+                    onChanged: (value){
+                      controller.changeResourceHeader(value!);
+                    }
+                );
+              }
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        child: GetBuilder<SimpleControllerRss>(
+          id: "controller",
+          init: controller,
+          builder: (controller) => Column(
+              children: [
+                UserAccountsDrawerHeader(
+                    accountName: Text('Tran Anh Tin'),
+                    accountEmail: Text('tin.ta.61cntt@ntu.edu.vn')
+                ),
+                Text('Sellect Source'),
+                RadioGroup<String>(
+                    onChanged: (value){
+                        controller.changeResource(value!);
+                    },
+                    child: Column(
+                      children: controller.resources.map(
+                          (e) => RadioListTile<String>(
+                            title: Text(e.name),
+                            value: e.name,
+                          )
+                      ).toList(),
+                    )
+                )
+              ],
+            )
+
+        )
       ),
       body: RefreshIndicator(
         onRefresh: () => controller.readRss(),
@@ -56,14 +114,25 @@ class PageRss65httts4 extends StatelessWidget {
                               const SizedBox(width: 10),
                               Expanded(
                                 flex: 2,
-                                child: Text(
-                                  item.title ?? "No Title",
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => PageViewRss65Httts4(
+                                          link: item.link?? "No url",
+                                          resourceName: controller.currentResourceName,
+                                        ),
+                                      )
+                                    );
+                                  },
+                                    child: Text(
+                                    item.title ?? "No Title",
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ],

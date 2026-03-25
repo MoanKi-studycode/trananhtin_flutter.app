@@ -7,7 +7,7 @@ import 'package:xml2json/xml2json.dart';
 
 class SimpleControllerRss extends GetxController{
   List<RssResource> resources = rssResources;
-  RssResource currentResource = rssResources[0];
+  late RssResource currentResource;
   String? _rssUrl;
   String? _resourceHeader;
   var _rssList = <RssItem>[];
@@ -18,23 +18,48 @@ class SimpleControllerRss extends GetxController{
   List<String> get headerResources => currentResource.resourceHeaders.keys.toList();
 
   @override
+  void onInit() {
+    super.onInit();
+    currentResource = rssResources[0];
+    _resourceHeader = currentResource.resourceHeaders.keys.first;
+    _rssUrl = currentResource.resourceHeaders[_resourceHeader];
+  }
+
+  @override
   void onReady(){
     super.onReady();
     readRss();
   }
 
-
-  @override
-  void onInit() {
-    super.onInit();
-    if(_rssUrl==null)
-      _rssUrl = currentResource.resourceHeaders.values.toList()[0];
-    if(_resourceHeader==null)
-      _resourceHeader = currentResource.resourceHeaders.keys.toList()[0];
+  void changeResourceHeader(String header) {
+    if (currentResource.resourceHeaders.containsKey(header)) {
+      _resourceHeader = header;
+      _rssUrl = currentResource.resourceHeaders[header];
+      _rssList = [];
+      update(["rssList", "header"]);
+      readRss();
+    }
   }
 
+  void changeResource(String resourceName) {
+    if(resourceName != currentResourceName){
+      for (var r in resources) {
+        if (r.name == resourceName) {
+          currentResource = r;
+          break;
+        }
+      }
+      _resourceHeader = currentResource.resourceHeaders.keys.first;
+      _rssUrl = currentResource.resourceHeaders[_resourceHeader];
+      _rssList = [];
+      update(["rssList", "header", "resourceName"]);
+      readRss();
+    }
+  }
 
   Future<void> readRss() async{
+    if (_rssUrl == null) return;
+    
     _fetchRSS(_rssUrl!)
         .then(
           (value) {
@@ -46,6 +71,8 @@ class SimpleControllerRss extends GetxController{
     ).onError(
         (error, stackTrace) {
           print("Loi doc Rss $error");
+          _rssList = [];
+          update(["rssList"]);
         },
     );
   }
@@ -73,7 +100,6 @@ class SimpleControllerRss extends GetxController{
     } catch (e) {
       print("Exception reading rss: $e");
     }
-    print("Error read rss");
     return null;
   }
 }

@@ -19,7 +19,7 @@ List<RssResource> rssResources = [
   RssResource(
     id: "vnexpress", 
     name: "VnExpress", 
-    startDecriptionRegrex: "</a>", 
+    startDecriptionRegrex: "</a></br>", 
     endDecriptionRegrex: "", 
     startImageRegrex: '<img src="', 
     endImageRegrex: '"', 
@@ -33,8 +33,8 @@ List<RssResource> rssResources = [
   RssResource(
     id: "tuoitre", 
     name: "Tuổi Trẻ", 
-    startDecriptionRegrex: "</a>", 
-    endDecriptionRegrex: "", 
+    startDecriptionRegrex: "</a>",
+    endDecriptionRegrex: "",
     startImageRegrex: '<img src="', 
     endImageRegrex: '"', 
     resourceHeaders: {
