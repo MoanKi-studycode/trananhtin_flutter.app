@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:trananhtin_flutter_app/home.dart';
 import 'package:trananhtin_flutter_app/profile/page_getx_65httt.dart';
 import 'package:trananhtin_flutter_app/profile/page_home_65httt.dart';
 import 'package:trananhtin_flutter_app/profile/profile64mmt.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+      url: 'https://ybovjoinkzqazqvxvbmt.supabase.co',
+      anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlib3Zqb2lua3pxYXpxdnh2Ym10Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NDQ4NTUsImV4cCI6MjA5MDQyMDg1NX0.c5iknHo3-1Filn2QHhkkFDy1719YwIBIhCgFTAc_M_k',
+  );
+  runApp(MyApp());
   runApp(const MyApp());
 }
 

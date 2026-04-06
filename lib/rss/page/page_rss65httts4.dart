@@ -55,14 +55,19 @@ class PageRss65httts4 extends StatelessWidget {
                 ),
                 Text('Sellect Source'),
                 RadioGroup<String>(
+                    groupValue: controller.currentResourceName,
                     onChanged: (value){
-                        controller.changeResource(value!);
+                      controller.changeResource(value!);
                     },
                     child: Column(
                       children: controller.resources.map(
                           (e) => RadioListTile<String>(
                             title: Text(e.name),
                             value: e.name,
+                            groupValue: controller.currentResourceName,
+                            onChanged: (value){
+                              controller.changeResource(value!);
+                            },
                           )
                       ).toList(),
                     )

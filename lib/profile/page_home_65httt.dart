@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trananhtin_flutter_app/page_fruit_stream_65httt.dart';
 import 'package:trananhtin_flutter_app/profile/listview65httt.dart';
 import 'package:trananhtin_flutter_app/profile/page_getx_65httt.dart';
 import 'package:trananhtin_flutter_app/profile/profile64mmt.dart';
@@ -27,6 +28,7 @@ class _PageHome65HTTTState extends State<PageHome65HTTT> {
             _buildButton(context, title: "List View", destination: PageListView65HTTT()),
             _buildButton(context, title: "Page GetX", destination: GetxApp65HTTT()),
             _buildButton(context, title: "Rss65Httts4", destination: PageRss65httts4()),
+            _buildButton(context, title: "FruitStore", destination: PageFruitStream65httt()),
           ],
         ),
       ),
