@@ -5,6 +5,7 @@ import 'package:trananhtin_flutter_app/profile/listview65httt.dart';
 import 'package:trananhtin_flutter_app/profile/page_getx_65httt.dart';
 import 'package:trananhtin_flutter_app/profile/profile64mmt.dart';
 import 'package:trananhtin_flutter_app/rss/page/page_rss65httts4.dart';
+import 'package:trananhtin_flutter_app/tgk/page_65httt_tgk.dart';
 
 import '../Fruit.dart';
 
@@ -60,6 +61,11 @@ class _PageHome65HTTTState extends State<PageHome65HTTT> {
               context,
               title: "FruitStoreC7",
               destination: PageFruitHtttc7(),
+            ),
+            _buildButton(
+              context,
+              title: "PageTgk'",
+              destination: Page65htttTgk(),
             ),
           ],
         ),
