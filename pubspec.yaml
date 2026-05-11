@@ -44,6 +44,9 @@ dependencies:
   sqflite: ^2.4.2+1 
   provider: ^6.1.5+1
   flutter_slidable: ^4.0.3
+  flutter_otp_text_field: ^1.5.1+1
+  supabase_auth_ui: ^0.5.5
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:

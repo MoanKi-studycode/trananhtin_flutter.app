@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:trananhtin_flutter_app/form/page_form_mathang.dart';
+import 'package:trananhtin_flutter_app/login/page_login.dart';
 import 'package:trananhtin_flutter_app/page_fruit_htttc7.dart';
 import 'package:trananhtin_flutter_app/page_fruit_stream_65httt.dart';
+import 'package:trananhtin_flutter_app/phone/read_number.dart';
 import 'package:trananhtin_flutter_app/profile/listview65httt.dart';
 import 'package:trananhtin_flutter_app/profile/page_getx_65httt.dart';
 import 'package:trananhtin_flutter_app/profile/profile64mmt.dart';
@@ -26,7 +28,8 @@ class _PageHome65HTTTState extends State<PageHome65HTTT> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Center(
-        child: Column(
+        child: SingleChildScrollView(
+          child: Column(
           children: [
             _buildButton(
               context,
@@ -83,8 +86,24 @@ class _PageHome65HTTTState extends State<PageHome65HTTT> {
               title: "SQLite App",
               destination: SQLiteApp(),
             ),
+            _buildButton(
+              context,
+              title: "Page login",
+              destination: PageLogin(),
+            ),
+            _buildButton(
+              context,
+              title: "Page verify",
+              destination: PageVerifyUser(email: "anhtin@gmail.com"),
+            ),
+            _buildButton(
+              context,
+              title: "Page call",
+              destination: PageCall(),
+            ),
           ],
         ),
+        ) 
       ),
     );
   }
