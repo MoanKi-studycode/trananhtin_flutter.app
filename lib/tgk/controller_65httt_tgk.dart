@@ -16,7 +16,7 @@ class Controller65htttTgk extends GetxController {
     double res = val / 2.54;
     inch.text = res.toStringAsFixed(2);
     ketQuaCm.value = "${val.toStringAsFixed(1)} cm = ${res.toStringAsFixed(2)} inch";
-    inchFocus.requestFocus();;
+    inchFocus.requestFocus();
     update(["tgk"]);
   }
 

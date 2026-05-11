@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:trananhtin_flutter_app/tgk/controller_65httt_tgk.dart';
 
 class Page65htttTgk extends StatelessWidget {
-  Page65htttTgk({super.key});
+  const Page65htttTgk({super.key});
 
   @override
   Widget build(BuildContext context) {

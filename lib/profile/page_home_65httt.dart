@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:trananhtin_flutter_app/form/page_form_mathang.dart';
 import 'package:trananhtin_flutter_app/page_fruit_htttc7.dart';
 import 'package:trananhtin_flutter_app/page_fruit_stream_65httt.dart';
 import 'package:trananhtin_flutter_app/profile/listview65httt.dart';
 import 'package:trananhtin_flutter_app/profile/page_getx_65httt.dart';
 import 'package:trananhtin_flutter_app/profile/profile64mmt.dart';
 import 'package:trananhtin_flutter_app/rss/page/page_rss65httts4.dart';
+import 'package:trananhtin_flutter_app/sqlite/page_sqlite_app.dart';
 import 'package:trananhtin_flutter_app/tgk/page_65httt_tgk.dart';
 import 'package:trananhtin_flutter_app/thigiuki/page_thigiuaki.dart';
-
-import '../Fruit.dart';
 
 class PageHome65HTTT extends StatefulWidget {
   const PageHome65HTTT({super.key});
@@ -73,6 +73,16 @@ class _PageHome65HTTTState extends State<PageHome65HTTT> {
               title: "PageThiGiuaKi",
               destination: PageThigiuaki(),
             ),
+            _buildButton(
+              context,
+              title: "PageFormMatHang",
+              destination: PageFormMathang(),
+            ),
+            _buildButton(
+              context,
+              title: "SQLite App",
+              destination: SQLiteApp(),
+            ),
           ],
         ),
       ),
@@ -81,49 +91,49 @@ class _PageHome65HTTTState extends State<PageHome65HTTT> {
 
   Widget _buildButton(
     BuildContext context, {
-    required String? title,
-    required Widget? destination,
+    required String title,
+    required Widget destination,
   }) {
-    return Container(
+    return SizedBox(
       width: 200,
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all(Colors.purple[50]),
-          elevation: WidgetStateProperty.all(2),
+          backgroundColor: MaterialStateProperty.all(Colors.purple[50]),
+          elevation: MaterialStateProperty.all(2),
         ),
         onPressed: () {
           Navigator.of(
             context,
-          ).push(MaterialPageRoute(builder: (context) => destination!));
+          ).push(MaterialPageRoute(builder: (context) => destination));
         },
-        child: Text(title!),
+        child: Text(title),
       ),
     );
   }
 
   Widget _buildButton2(
     BuildContext context, {
-    required String? title,
-    required Widget? destination,
+    required String title,
+    required Widget destination,
   }) {
-    return Container(
+    return SizedBox(
       width: 200,
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all(Colors.purple[50]),
-          elevation: WidgetStateProperty.all(2),
+          backgroundColor: MaterialStateProperty.all(Colors.purple[50]),
+          elevation: MaterialStateProperty.all(2),
         ),
         onPressed: () async {
           var result = await Navigator.of(
             context,
-          ).push(MaterialPageRoute(builder: (context) => destination!));
+          ).push(MaterialPageRoute(builder: (context) => destination));
           if (result != null) {
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text("Received $result")));
           }
         },
-        child: Text(title!),
+        child: Text(title),
       ),
     );
   }

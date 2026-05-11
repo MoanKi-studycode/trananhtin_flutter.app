@@ -70,7 +70,7 @@ class FruitSnapshot {
     await supabase.from('Fruit').update(f.toJson()).eq('id', f.id);
   }
 
-  static listenFruitChange(Map<int, Fruit> maps, {Function()? updateUI}) {
+  static void listenFruitChange(Map<int, Fruit> maps, {Function()? updateUI}) {
     listenDataChange(
         maps,
         chanel: "public:Fruit",

@@ -19,10 +19,10 @@ Future<Map<int, T>> getMapData<T>({
 }) async {
   final data = await supabase.from(table).select();
   var interable = data.map((e) => fromMap(e));
-  return Map.fromIterable(interable, key: (e) => getId(e), value: (e) => e);
+  return { for (var e in interable) getId(e) : e };
 }
 
-listenDataChange<T>(
+void listenDataChange<T>(
   Map<int, T> maps, {
   Function()? updateUI,
   required String chanel,

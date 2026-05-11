@@ -215,10 +215,10 @@ class PageGioHang extends StatelessWidget {
                               controller.update(["gioHang"]);
                             },
                           ),
-                          Container(
-                              child: Image.network(fruit!.anh ?? "No image"),
+                          SizedBox(
                               width: 80,
-                              height: 80
+                              height: 80,
+                              child: Image.network(fruit!.anh ?? "No image")
                           ),
                           SizedBox(width: 10),
                           Expanded(

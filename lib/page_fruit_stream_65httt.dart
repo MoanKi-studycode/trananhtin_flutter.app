@@ -15,7 +15,7 @@ class PageFruitStream65httt extends StatelessWidget {
           stream: FruitSnapshot.getFruitStreamHTTT(),
           builder: (context, snapshot){
             if(snapshot.hasError){
-              print("Error!" + snapshot.error.toString());
+              print("Error!${snapshot.error}");
               return Center(
                 child: Text("Error!!!", style: TextStyle(color: Colors.red)),
                 );

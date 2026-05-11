@@ -16,7 +16,7 @@ class PageFruit65httt extends StatelessWidget {
           future: FruitSnapshot.getMapFruitHTTT(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              print("Error!" + snapshot.error.toString());
+              print("Error!${snapshot.error}");
               return Center(
                 child: Text("Error!!!", style: TextStyle(color: Colors.red)),
               );

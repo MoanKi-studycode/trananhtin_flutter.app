@@ -91,7 +91,7 @@ class _MyProfileState extends State<MyProfile> {
             crossAxisAlignment: .start,
             children: [
               Center(
-                child: Container(
+                child: SizedBox(
                   width: 300, height: 200,
                   child: Image.asset("asset/images/profile.jpg"),
                 ),
@@ -158,8 +158,8 @@ class _MyProfileState extends State<MyProfile> {
                   value: nnlt,
                   items: nnlts.map(
                           (e) => DropdownMenuItem<String>(
-                        child: Text(e),
                         value: e,
+                        child: Text(e),
                       )
                   ).toList(),
                   onChanged: (value) {

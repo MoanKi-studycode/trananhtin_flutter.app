@@ -31,8 +31,8 @@ class PageRss65httts4 extends StatelessWidget {
                     value: controller.resourceHeader,
                     items: controller.headerResources.map(
                         (e) => DropdownMenuItem(
-                          child: Text(e),
                           value: e,
+                          child: Text(e),
                         )
                     ).toList(),
                     onChanged: (value){
